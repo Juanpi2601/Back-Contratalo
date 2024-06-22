@@ -1,6 +1,6 @@
 import express from "express";
 import dotenv from 'dotenv';
-import'../../DBConnection/DBconecction.js'
+import'../DBConnection/DBconecction.js'
 import morgan from 'morgan';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
