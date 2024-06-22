@@ -1,27 +1,30 @@
-const express = require('express');
-const mongoose = require('mongoose');
+import express from "express";
+import dotenv from 'dotenv';
+import'../../DBConnection/DBconecction.js'
+import morgan from 'morgan';
+import cors from 'cors';
+import cookieParser from 'cookie-parser';
+import userRoutes from "../routes/user.routes.js";
+
+export const port = process.env.PORT || 8000;
+export const ADMIN_KEY = process.env.ADMIN_KEY;
+export const USER_KEY = process.env.USER_KEY;
 
 const app = express();
-const PORT = process.env.PORT || 3000;
 
-// Middleware
-app.use(express.json());
+dotenv.config();
+app.use(cookieParser());
+app.use(morgan("dev"));
+app.use(
+  cors({
+    origin: 'http://localhost:5173',
+    credentials: true,
+    withCredentials: true,
+  })
+);
 
-// Connect to MongoDB
-mongoose.connect('mongodb://localhost:27017/mi_database', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-}).then(() => {
-  console.log('Connected to MongoDB');
-}).catch(err => {
-  console.error('Failed to connect to MongoDB', err);
-});
+app.use("/user", userRoutes);
 
-// Routes
-app.get('/', (req, res) => {
-  res.send('Hello, world!');
-});
-
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
 });
