@@ -1,20 +1,20 @@
-Node.js
-node_modules/
+# Node.js
+node_modules
 npm-debug.log
 
-Editor
+# Editor
 .vscode/
 .idea/
 
-Sistemas operativos
+# Sistemas operativos
 .DS_Store
 Thumbs.db
 
-Entornos
+# Entornos
 .env
 .env.local
 .env.*.local
 
-Archivos de compilación
+# Archivos de compilación
 /build/
 /dist/
