@@ -5,25 +5,25 @@ export const createService = async (req, res) => {
 
     try {
         const newService = await Service.create({
-            nombre: nombre,
-            imagenUrl: imagenUrl,
-            descripcion: descripcion
+            nombre,
+            imagenUrl,
+            descripcion
         });
 
-        res.status(201).json({ _id: newService._id });
+        res.status(201).json(newService);
 
     } catch (error) {
-        console.log(error)
+        console.log(error);
         return res.status(500).json({ message: error.message });
     }
-}
+};
 
 export const getAllServices = async (req, res) => {
     try {
         const services = await Service.find();
         res.status(200).json(services);
     } catch (error) {
-        return res.status(500).json({ message: error });
+        return res.status(500).json({ message: error.message });
     }
 };
 
@@ -36,7 +36,7 @@ export const getServiceById = async (req, res) => {
         }
         res.status(200).json(service);
     } catch (error) {
-        return res.status(500).json({ message: error });
+        return res.status(500).json({ message: error.message });
     }
 };
 
@@ -47,7 +47,7 @@ export const deleteServiceById = async (req, res) => {
         await Service.findByIdAndDelete(id);
         res.status(204).json({ message: "Servicio eliminado exitosamente" });
     } catch (error) {
-        return res.status(500).json({ message: error });
+        return res.status(500).json({ message: error.message });
     }
 };
 
@@ -61,9 +61,9 @@ export const editServiceById = async (req, res) => {
             return res.status(404).json({ message: "Servicio no encontrado" });
         }
 
-        res.status(200).json({ message: "Servicio actualizado", serviceUpdate });
+        res.status(200).json(serviceUpdate);
     } catch (error) {
-        return res.status(500).json({ message: error });
+        return res.status(500).json({ message: error.message });
     }
 };
 
@@ -90,7 +90,7 @@ export const getServicesWithOptions = async (req, res) => {
 
         res.status(404).json({ message: 'Servicio no encontrado' });
     } catch (error) {
-        return res.status(500).json({ message: error });
+        return res.status(500).json({ message: error.message });
     }
 };
 
