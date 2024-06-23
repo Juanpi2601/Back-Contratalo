@@ -5,6 +5,7 @@ import morgan from 'morgan';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import userRoutes from "../routes/user.routes.js";
+import serviceRoutes from '../routes/service.routes.js';
 
 export const PORT = process.env.PORT || 8000;
 export const ADMIN_KEY = process.env.ADMIN_KEY;
@@ -25,6 +26,7 @@ app.use(
 );
 
 app.use("/user", userRoutes);
+app.use('/services', serviceRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
